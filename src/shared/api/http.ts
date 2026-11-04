@@ -1,5 +1,16 @@
 import { API_BASE } from '../contracts/messages'
 
+/**
+ * Origen del backend. Vacío en desarrollo (el proxy de Vite reenvía /api y /ws a localhost:8080).
+ * En producción (Vercel) es la URL del backend en Render: VITE_API_URL=https://elections-api.onrender.com
+ */
+export const API_ORIGIN: string = ((import.meta.env.VITE_API_URL as string | undefined) ?? '').replace(/\/+$/, '')
+
+/** URL absoluta de un recurso del backend, p. ej. apiUrl('/api/v1/stream'). */
+export function apiUrl(path: string): string {
+  return `${API_ORIGIN}${path}`
+}
+
 export class HttpError extends Error {
   readonly status: number
   readonly body: unknown
@@ -28,7 +39,7 @@ export async function request(path: string, opts: RequestOptions = {}): Promise<
   if (opts.body !== undefined) headers['Content-Type'] = 'application/json'
   if (opts.token) headers.Authorization = `Bearer ${opts.token}`
   try {
-    return await fetch(`${API_BASE}${path}`, {
+    return await fetch(apiUrl(`${API_BASE}${path}`), {
       method: opts.method ?? 'GET',
       headers,
       body: opts.body === undefined ? undefined : JSON.stringify(opts.body),
@@ -61,7 +72,7 @@ export async function getJson<T>(path: string, opts: RequestOptions = {}): Promi
 
 /** Builds a ws:// or wss:// URL on the current origin (goes through the Vite proxy in dev). */
 export function wsUrl(path: string, params: Record<string, string> = {}): string {
-  const url = new URL(path, location.href)
+  const url = new URL(path, API_ORIGIN || location.href)
   url.protocol = url.protocol === 'https:' ? 'wss:' : 'ws:'
   for (const [key, value] of Object.entries(params)) url.searchParams.set(key, value)
   return url.toString()

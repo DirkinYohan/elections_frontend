@@ -4,6 +4,7 @@ import { onINP } from 'web-vitals'
 import { PUBLIC_EVENT_TYPES, type Catalog, type PublicEvent, type Topic } from '@shared/contracts/messages'
 import { FALLBACK_CANDIDATES, getCatalog } from '@shared/api/catalog'
 import { fetchTotals, isTopic } from '@shared/api/results'
+import { apiUrl } from '@shared/api/http'
 import { backoffDelay } from '@shared/transport/backoff'
 import { SseClient } from '@shared/transport/sse-client'
 import type { ConnectionStatus } from '@shared/transport/status'
@@ -94,7 +95,7 @@ let sse: SseClient<PublicEvent> | null = null
 
 function startSse(lastEventId?: string): void {
   sse = new SseClient<PublicEvent>({
-    url: '/api/v1/stream',
+    url: apiUrl('/api/v1/stream'),
     params: { topic },
     eventTypes: PUBLIC_EVENT_TYPES,
     resetTypes: ['snapshot'],

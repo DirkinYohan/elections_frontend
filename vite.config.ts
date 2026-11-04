@@ -14,8 +14,8 @@ export default defineConfig({
   server: {
     port: 5173,
     proxy: {
-      '/api': { target: 'http://localhost:8080', changeOrigin: true },
-      '/ws': { target: 'ws://localhost:8080', ws: true },
+      '/api': { target: process.env.BACKEND_URL ?? 'http://localhost:8080', changeOrigin: true },
+      '/ws': { target: (process.env.BACKEND_URL ?? 'http://localhost:8080').replace(/^http/, 'ws'), ws: true },
     },
   },
   build: {

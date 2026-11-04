@@ -25,3 +25,6 @@ dist-ssr
 
 # Load test output
 load-test/results/
+
+.env
+.vercel

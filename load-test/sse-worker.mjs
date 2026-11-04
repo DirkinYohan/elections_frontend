@@ -65,8 +65,8 @@ function handleFrame(client, frame) {
   let id = null
   let data = null
   for (const line of frame.split('\n')) {
-    if (line.startsWith('id: ')) id = line.slice(4)
-    else if (line.startsWith('data: ')) data = line.slice(6)
+    if (line.startsWith('id:')) id = line.slice(3).trimStart()
+    else if (line.startsWith('data:')) data = line.slice(5).trimStart()
   }
   if (!data) return // ": ping" comments
   if (id) client.lastId = id
