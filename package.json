@@ -4,13 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "oxlint",
-    "preview": "vite preview"
-    "gen:api": "openapi-typescript http://localhost:8080/v3/api-docs -o src/shared/contracts/api.d.ts"
-    
-  },
+  "dev": "vite",
+  "build": "tsc -b && vite build",
+  "lint": "oxlint",
+  "preview": "vite preview",
+  "gen:api": "npx --yes openapi-typescript http://localhost:8080/v3/api-docs -o src/shared/contracts/api.d.ts"
+},
+
   "dependencies": {
     "idb": "^8.0.4",
     "react": "^19.3.1",
