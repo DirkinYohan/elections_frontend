@@ -14,6 +14,8 @@ export interface SseClientOptions<T> {
   onEvent: (type: string, data: T, id: string) => void
   onStatus?: StatusListener
   backoff?: BackoffOptions
+  /** Continuity token restored from storage (e.g. after a page reload). */
+  initialLastEventId?: string
 }
 
 /**
@@ -34,6 +36,7 @@ export class SseClient<T = unknown> {
 
   constructor(opts: SseClientOptions<T>) {
     this.opts = opts
+    this.lastEventId = opts.initialLastEventId
   }
 
   /** Last processed event id (the continuity token the client carries). */

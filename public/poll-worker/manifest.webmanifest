@@ -1,0 +1,12 @@
+{
+  "name": "Transmisión de actas · Preconteo",
+  "short_name": "Actas",
+  "description": "Transmisión de actas E-14 para jurados de votación, con funcionamiento sin conexión.",
+  "start_url": "/poll-worker/",
+  "scope": "/poll-worker/",
+  "display": "standalone",
+  "background_color": "#f4f5f7",
+  "theme_color": "#1d4ed8",
+  "lang": "es",
+  "icons": [{ "src": "/poll-worker/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

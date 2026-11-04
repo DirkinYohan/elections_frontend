@@ -1,0 +1,143 @@
+.small {
+  font-size: 0.85rem;
+}
+
+.console {
+  display: grid;
+  grid-template-columns: minmax(300px, 1fr) minmax(320px, 1.2fr);
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .console {
+    grid-template-columns: 1fr;
+  }
+}
+
+.console h2 {
+  font-size: 1.1rem;
+}
+
+.case-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 70vh;
+  overflow: auto;
+}
+
+.case {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+}
+
+.case.locked {
+  opacity: 0.6;
+}
+
+.case.mine {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent) inset;
+}
+
+.case-head,
+.case-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.empty h2 {
+  margin-bottom: 8px;
+}
+
+.lock-meter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lock-bar {
+  flex: 1;
+  height: 8px;
+  background: var(--surface-2);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.lock-fill {
+  height: 100%;
+  background: var(--accent);
+  transform-origin: left center;
+  transition: transform 500ms linear;
+}
+
+.votes-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.votes-table th,
+.votes-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+.votes-table td.num,
+.votes-table th.num {
+  text-align: right;
+}
+
+.votes-table input {
+  min-height: 36px;
+  text-align: right;
+}
+
+.votes-table tfoot th,
+.votes-table tfoot td {
+  font-weight: 700;
+}
+
+.decision-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.notices {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: min(420px, calc(100vw - 32px));
+}
+
+.notice-toast {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 0.15);
+}
+
+.presence summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.presence ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+}

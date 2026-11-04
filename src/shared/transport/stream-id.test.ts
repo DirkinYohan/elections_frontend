@@ -20,3 +20,11 @@ describe('compareStreamIds', () => {
     expect(() => compareStreamIds('abc', '1-0')).toThrow()
   })
 })
+
+describe('backend monotonic ids', () => {
+  it('compares plain long ids (backend monotonicId) numerically', () => {
+    expect(compareStreamIds('99', '100')).toBeLessThan(0)
+    expect(compareStreamIds('100', '100')).toBe(0)
+    expect(isValidStreamId('12345')).toBe(true)
+  })
+})
