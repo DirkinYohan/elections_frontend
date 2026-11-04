@@ -4,13 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-  "dev": "vite",
-  "build": "tsc -b && vite build",
-  "lint": "oxlint",
-  "preview": "vite preview",
-  "gen:api": "npx --yes openapi-typescript http://localhost:8080/v3/api-docs -o src/shared/contracts/api.d.ts"
-},
-
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint",
+    "preview": "vite preview",
+    "gen:api": "npx --yes openapi-typescript http://localhost:8080/v3/api-docs -o src/shared/contracts/api.d.ts",
+    "mock": "node mock-server/server.mjs",
+    "test": "vitest run"
+  },
   "dependencies": {
     "idb": "^8.0.4",
     "react": "^19.3.1",
@@ -28,6 +29,7 @@
     "typescript": "~7.0.2",
     "vite": "^8.3.5",
     "vite-plugin-pwa": "^2.0.0",
-    "vitest": "^5.1.0"
+    "vitest": "^5.1.0",
+    "ws": "^8.22.1"
   }
 }
